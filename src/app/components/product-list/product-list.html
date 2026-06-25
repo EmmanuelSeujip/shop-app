@@ -1,21 +1,39 @@
-<div class="product-list">
-    <!-- Pour debug : afficher le tableau brut en JSON -->
-    <!-- <pre>{{ products() | json }}</pre> -->
-    @for (product of listProduct(); track product.id) {
-    <div class="product-card">
-        <img [src]="product.image" [alt]="product.name">
-        <h3>{{ product.name | uppercase }}</h3>
-        <p>{{ product.description }}</p>
-        <p class="categories">
-            Catégories : {{ product.categories | json }}
-        </p>
-        <p class="price">
-            <span class="sold">{{ product.soldPrice | currency:'XAF':'symbol' }}</span>
-            <span class="regular">{{ product.regularPrice | currency:'XAF':'symbol' }}</span>
-        </p>
-        <p class="date">
-            Ajouté le {{ product.createdAt | date:'dd/MM/yyyy' }}
-        </p>
-    </div>
-    }
+<div class="table-container">
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom du produit</th>
+                <th>Description</th>
+                <th>Catégories</th>
+                <th>Prix</th>
+                <th>Date d'ajout</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of listProduct(); track product.id) {
+            <tr>
+                <td>
+                    <img [src]="product.image" [alt]="product.name">
+                </td>
+                <td>
+                    <strong>{{ product.name | uppercase }}</strong>
+                </td>
+                <td>
+                    <p>{{ product.description }}</p>
+                </td>
+                <td>
+                    <span class="categories">{{ product.categories | json }}</span>
+                </td>
+                <td class="price">
+                    <span class="sold">{{ product.soldPrice | currency:'XAF':'symbol' }}</span>
+                    <span class="regular">{{ product.regularPrice | currency:'XAF':'symbol' }}</span>
+                </td>
+                <td class="date">
+                    {{ product.createdAt | date:'dd/MM/yyyy' }}
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>

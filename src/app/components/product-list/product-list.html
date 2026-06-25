@@ -1,0 +1,5 @@
+<section class="all-product">
+    @for (product of listProduct; track $index) {
+        <app-product-item [product]="product" />
+    }
+</section>

@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root{
-    --primary-color: rgb(13, 189, 13);
+    --primary-color: #B71F2B;
+    --bs-primary:#b71f2b;
+    --bs-primary-rgb:183, 31, 43;
 }
 body{
     font-family: 'Poppins', sans-serif;

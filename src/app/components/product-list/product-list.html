@@ -1,39 +1,5 @@
-<div class="table-container">
-    <table class="product-table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Nom du produit</th>
-                <th>Description</th>
-                <th>Catégories</th>
-                <th>Prix</th>
-                <th>Date d'ajout</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (product of listProduct(); track product.id) {
-            <tr>
-                <td>
-                    <img [src]="product.image" [alt]="product.name">
-                </td>
-                <td>
-                    <strong>{{ product.name | uppercase }}</strong>
-                </td>
-                <td>
-                    <p>{{ product.description }}</p>
-                </td>
-                <td>
-                    <span class="categories">{{ product.categories | json }}</span>
-                </td>
-                <td class="price">
-                    <span class="sold">{{ product.soldPrice | currency:'XAF':'symbol' }}</span>
-                    <span class="regular">{{ product.regularPrice | currency:'XAF':'symbol' }}</span>
-                </td>
-                <td class="date">
-                    {{ product.createdAt | date:'dd/MM/yyyy' }}
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<section class="all-product">
+    @for (product of listProduct(); track $index) {
+        <app-product-item [product]="product" />
+    }
+</section>

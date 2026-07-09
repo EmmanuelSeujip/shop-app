@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductItem } from "../product-item/product-item";
+import { ModalProductView } from "../modal-product-view/modal-product-view";
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule, ProductItem],
+  imports: [CommonModule, ProductItem, ModalProductView],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

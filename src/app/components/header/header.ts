@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.css',
 })
 export class Header {
-
-    toggleMenu() {
-        const nav = document.querySelector('header nav');
-        nav?.classList.toggle('active');
-    }
+  toggleMenu() {
+    const nav = document.querySelector('header nav');
+    nav?.classList.toggle('active');
+  }
+  countFavorite=input<number>(0)
 }

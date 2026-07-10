@@ -46,7 +46,8 @@ export class ProductList {
       regularPrice: 35000,
       image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
       createdAt: new Date('2026-01-15'),
-      categories: ['Électronique', 'Audio']
+      categories: ['Électronique', 'Audio'],
+      isFavorite:false
     },
     {
       id: 2,
@@ -56,7 +57,8 @@ export class ProductList {
       regularPrice: 45000,
       image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
       createdAt: new Date('2026-02-10'),
-      categories: ['Électronique', 'Accessoires']
+      categories: ['Électronique', 'Accessoires'],
+      isFavorite:false
     },
     {
       id: 3,
@@ -66,7 +68,8 @@ export class ProductList {
       regularPrice: 15000,
       image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80',
       createdAt: new Date('2026-03-05'),
-      categories: ['Mode', 'Accessoires']
+      categories: ['Mode', 'Accessoires'],
+      isFavorite:false
     },
     {
       id: 4,
@@ -76,7 +79,8 @@ export class ProductList {
       regularPrice: 25000,
       image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80',
       createdAt: new Date('2026-04-20'),
-      categories: ['Mode', 'Chaussures']
+      categories: ['Mode', 'Chaussures'],
+      isFavorite:false
     },
     {
       id: 5,
@@ -96,7 +100,8 @@ export class ProductList {
       regularPrice: 250000,
       image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80',
       createdAt: new Date('2025-11-25'),
-      categories: ['Électronique', 'Photographie']
+      categories: ['Électronique', 'Photographie'],
+      isFavorite:false
     },
     {
       id: 7,
@@ -106,7 +111,8 @@ export class ProductList {
       regularPrice: 8000,
       image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80',
       createdAt: new Date('2026-06-01'),
-      categories: ['Maison', 'Accessoires']
+      categories: ['Maison', 'Accessoires'],
+      isFavorite:false
     },
     {
       id: 8,
@@ -116,17 +122,18 @@ export class ProductList {
       regularPrice: 40000,
       image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80',
       createdAt: new Date('2026-01-30'),
-      categories: ['Électronique', 'Informatique']
+      categories: ['Électronique', 'Informatique'],
+      isFavorite:false
     }
   ])
   toggleFavorite(productId: number) {
     const product = this.listProduct().find(p => p.id === productId);
     if (product) {
       if (product.isFavorite) {
-        this.increment()
+        this.decrement()
       }
       else{
-        this.decrement()
+        this.increment()
       }
       product.isFavorite = !product.isFavorite;
     }

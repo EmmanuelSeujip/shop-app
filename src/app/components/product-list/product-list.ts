@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductItem } from "../product-item/product-item";
@@ -11,6 +11,20 @@ import { ModalProductView } from "../modal-product-view/modal-product-view";
   styleUrl: './product-list.css',
 })
 export class ProductList {
+  @Output() productClicked = new EventEmitter<Product>();
+  selectedProduct = signal<Product | null>(null);
+
+  onProductClick(product: Product) {  
+    console.log("ProductList caught click!", product);
+    this.productClicked.emit(product); 
+    this.selectedProduct.set(product);
+    console.log("selectedProduct signal is now:", this.selectedProduct());
+  } 
+
+  onCloseModal() {
+    this.selectedProduct.set(null);
+  }
+
   listProduct = signal<Product[]>([
     {
       id: 1,

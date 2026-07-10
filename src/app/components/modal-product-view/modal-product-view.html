@@ -1,14 +1,16 @@
-<div class="modal-product-view-overlay"></div>
+@if (product) {
+<div class="modal-product-view-overlay" (click)="onClose()"></div>
 <div class="modal-product-view-container">
  <div class="modal-product-view-image">
- <img src="" alt="">
+  <img [src]="product.image" [alt]="product.name">
  </div>
  <div class="modal-product-view-details">
-  <h2>Nom du produit</h2>
-  <p>Description</p>
-  <h4>Prix sold</h4>
-  <h4>Prix régulier</h4>
-  <p>Créé le 22/06/2026</p>
+  <h2>{{ product.name }}</h2>
+  <p>{{ product.description }}</p>
+  <h4>Prix soldé: {{ product.soldPrice }} FCFA</h4>
+  <h4>Prix régulier: {{ product.regularPrice }} FCFA</h4>
+  <p>Créé le {{ product.createdAt | date:'dd/MM/yyyy' }}</p>
  </div>
- <button class="btn btn-close">Fermer</button>
+ <button class="btn btn-close" (click)="onClose()">Fermer</button>
 </div>
+}

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, signal } from '@angular/core';
+import { Component, Output, EventEmitter, signal, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductItem } from "../product-item/product-item";
@@ -13,17 +13,29 @@ import { ModalProductView } from "../modal-product-view/modal-product-view";
 export class ProductList {
   @Output() productClicked = new EventEmitter<Product>();
   selectedProduct = signal<Product | null>(null);
+  count=output<number>()
+  actualCount=0
+
+  increment() {
+    this.actualCount++;
+    this.count.emit(this.actualCount); // envoie au parent
+  }
+
+
+  decrement() {
+    this.actualCount--;
+    this.count.emit(this.actualCount); // envoie au parent
+  }
 
   onProductClick(product: Product) {  
-    console.log("ProductList caught click!", product);
     this.productClicked.emit(product); 
     this.selectedProduct.set(product);
-    console.log("selectedProduct signal is now:", this.selectedProduct());
   } 
 
   onCloseModal() {
     this.selectedProduct.set(null);
   }
+
 
   listProduct = signal<Product[]>([
     {
@@ -106,5 +118,17 @@ export class ProductList {
       createdAt: new Date('2026-01-30'),
       categories: ['Électronique', 'Informatique']
     }
-  ]);
+  ])
+  toggleFavorite(productId: number) {
+    const product = this.listProduct().find(p => p.id === productId);
+    if (product) {
+      if (product.isFavorite) {
+        this.increment()
+      }
+      else{
+        this.decrement()
+      }
+      product.isFavorite = !product.isFavorite;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 <section class="all-product">
     @for (product of listProduct(); track $index) {
-        <app-product-item [product]="product" (productClicked)="onProductClick($event)" />
+        <app-product-item [product]="product" (productClicked)="onProductClick($event)" (clicked)="toggleFavorite(product.id)" />
     }
 </section>
 <app-modal-product-view [product]="selectedProduct()" (close)="onCloseModal()" />

@@ -13,5 +13,8 @@ export class ProductItem {
   onProductClick() {     
     this.productClicked.emit(this.product);   
   } 
-  clicked=output<number>()
+  clicked = output<void>();
+  onFavoriteClick() {
+    this.clicked.emit();
+  }
 }

@@ -1,6 +1,6 @@
 <section class="hero">
   <app-header [countFavorite]="countFavorite" />
-  <app-container/>
+  <app-product-list (count)="onCountChanged($event)"/> 
 </section>
 
 <app-footer/>

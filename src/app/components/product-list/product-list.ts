@@ -127,15 +127,18 @@ export class ProductList {
     }
   ])
   toggleFavorite(productId: number) {
-    const product = this.listProduct().find(p => p.id === productId);
-    if (product) {
-      if (product.isFavorite) {
-        this.decrement()
-      }
-      else{
-        this.increment()
-      }
-      product.isFavorite = !product.isFavorite;
-    }
+    this.listProduct.update(products => {
+      return products.map(product => {
+        if (product.id === productId) {
+          if (product.isFavorite) {
+            this.decrement();
+          } else {
+            this.increment();
+          }
+          return { ...product, isFavorite: !product.isFavorite };
+        }
+        return product;
+      });
+    });
   }
 }

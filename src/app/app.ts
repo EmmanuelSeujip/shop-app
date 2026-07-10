@@ -13,9 +13,9 @@ import { ProductList } from "./components/product-list/product-list";
 })
 export class App {
   protected readonly title = signal('shop-app');
-  countFavorite=0
+  countFavorite = signal(0);
   onCountChanged(value: number) {
-    this.countFavorite=value
+    this.countFavorite.set(value);
     console.log("Add favorite")
   }
 

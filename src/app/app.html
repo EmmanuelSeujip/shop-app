@@ -1,5 +1,5 @@
 <section class="hero">
-  <app-header [countFavorite]="countFavorite" />
+  <app-header [countFavorite]="countFavorite()" />
   <app-product-list (count)="onCountChanged($event)"/> 
 </section>
 

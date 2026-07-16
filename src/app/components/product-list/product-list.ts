@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, signal, output } from '@angular/core';
+import { Component, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductItem } from "../product-item/product-item";
@@ -13,19 +13,6 @@ import { ModalProductView } from "../modal-product-view/modal-product-view";
 export class ProductList {
   @Output() productClicked = new EventEmitter<Product>();
   selectedProduct = signal<Product | null>(null);
-  count=output<number>()
-  actualCount=0
-
-  increment() {
-    this.actualCount++;
-    this.count.emit(this.actualCount); // envoie au parent
-  }
-
-
-  decrement() {
-    this.actualCount--;
-    this.count.emit(this.actualCount); // envoie au parent
-  }
 
   onProductClick(product: Product) {  
     this.productClicked.emit(product); 
@@ -126,19 +113,4 @@ export class ProductList {
       isFavorite:false
     }
   ])
-  toggleFavorite(productId: number) {
-    this.listProduct.update(products => {
-      return products.map(product => {
-        if (product.id === productId) {
-          if (product.isFavorite) {
-            this.decrement();
-          } else {
-            this.increment();
-          }
-          return { ...product, isFavorite: !product.isFavorite };
-        }
-        return product;
-      });
-    });
-  }
 }

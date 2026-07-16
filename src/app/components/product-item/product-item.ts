@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, output } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { Product } from '../../models/product';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-product-item',
@@ -10,11 +11,13 @@ import { Product } from '../../models/product';
 export class ProductItem {
   @Input() product!: Product;
   @Output() productClicked = new EventEmitter<Product>();
-  onProductClick() {     
-    this.productClicked.emit(this.product);   
-  } 
-  clicked = output<void>();
+  favoritesService = inject(FavoritesService);
+
+  onProductClick() {
+    this.productClicked.emit(this.product);
+  }
+
   onFavoriteClick() {
-    this.clicked.emit();
+    this.favoritesService.toggle(this.product.id);
   }
 }
